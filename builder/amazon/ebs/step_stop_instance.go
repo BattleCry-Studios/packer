@@ -37,7 +37,7 @@ func (s *stepStopInstance) Run(state multistep.StateBag) multistep.StepAction {
 	stateChange := awscommon.StateChangeConf{
 		Pending:   []string{"running", "stopping"},
 		Target:    "stopped",
-		Refresh:   awscommon.InstanceStateRefreshFunc(ec2conn, instance),
+		Refresh:   awscommon.InstanceStateRefreshFunc(ec2conn, instance.InstanceId),
 		StepState: state,
 	}
 	_, err = awscommon.WaitForState(&stateChange)
@@ -54,3 +54,4 @@ func (s *stepStopInstance) Run(state multistep.StateBag) multistep.StepAction {
 func (s *stepStopInstance) Cleanup(multistep.StateBag) {
 	// No cleanup...
 }
+

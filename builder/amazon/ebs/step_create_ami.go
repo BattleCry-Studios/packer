@@ -87,7 +87,8 @@ func (s *stepCreateAMI) Cleanup(state multistep.StateBag) {
 		ui.Error(fmt.Sprintf("Error deregistering AMI, may still be around: %s", err))
 		return
 	} else if resp.Return == false {
-		ui.Error(fmt.Sprintf("Error deregistering AMI, may still be around: %s", resp.Return))
+		ui.Error(fmt.Sprintf("Error deregistering AMI, may still be around"))
 		return
 	}
 }
+
